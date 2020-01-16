@@ -2,7 +2,9 @@
 
 My fork of QMK. 
 build the binary with my keymap 
+```
  make ergodox_ez:striker
+ ```
 
 
 
