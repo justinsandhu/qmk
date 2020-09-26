@@ -6,6 +6,10 @@ build the binary with my keymap
  make ergodox_ez:striker
  ```
 
+or flash it with 
+```
+sudo make ergodox_ez:striker:flash
+ ```
 
 
 [![Current Version](https://img.shields.io/github/tag/qmk/qmk_firmware.svg)](https://github.com/qmk/qmk_firmware/tags)
