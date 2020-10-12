@@ -38,6 +38,7 @@ void tap_key(uint16_t keycode)
 enum custom_keycodes {
   RGB_SLD = EZ_SAFE_RANGE,
   //Regular Key Codes
+  DOTFILE,
   KILLR,
   KITTY_UNI,
   KITTY_HINT,
@@ -52,6 +53,8 @@ enum custom_keycodes {
   TMUX_MOD,
   TMUX_SYNC,
   TMUX_CMD,
+  GG,
+  GG2,
 };
 
 
@@ -123,13 +126,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      // mouse and marco
   [6] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MS_UP,       KC_MS_BTN3,     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_MS_BTN3,     TMUX_SYNC,      TMUX_CMD,       KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_MS_UP,       KC_MS_BTN3,     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_MS_BTN3,     TMUX_SYNC,      TMUX_CMD,       GG, GG2, KC_TRANSPARENT, KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_TRANSPARENT,                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_MS_ACCEL0,   KC_MS_ACCEL1,   KC_MS_ACCEL2,   KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT,
-                                                                                    KC_MS_BTN1,     KC_MS_BTN2,     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_WWW_BACK
+                                                                                    KC_MS_BTN1,     KC_MS_BTN2,     KC_TRANSPARENT, KC_TRANSPARENT, DOTFILE, KC_WWW_BACK
   ), // LED things
   [7] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 RGB_MOD,        RGB_SLD,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
@@ -151,6 +154,45 @@ bool suspended = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+	  //Troll
+    case GG:
+      if (record->event.pressed) {
+          send_string(".------..------.");
+	  tap_key(KC_ENTER);
+          send_string("|G.--. ||G.--. |");
+          tap_key(KC_ENTER);
+          send_string("| :/\\: || :/\\: |");
+	  tap_key(KC_ENTER);
+          send_string("| :\\/: || :\\/: |");
+	  tap_key(KC_ENTER);
+          send_string("| '--'G|| '--'G|");
+	  tap_key(KC_ENTER);
+	  send_string("`------''------'");
+	  tap_key(KC_ENTER);
+      }
+      return false;
+          case GG2:
+      if (record->event.pressed) {
+	     
+send_string("  _______   _______ ");tap_key(KC_ENTER);
+send_string(" /  _____| /  _____|");tap_key(KC_ENTER);
+send_string("|  |  __  |  |  __  ");tap_key(KC_ENTER);
+send_string("|  | |_ | |  | |_ | ");tap_key(KC_ENTER);
+send_string("|  |__| | |  |__| | ");tap_key(KC_ENTER);
+send_string(" \\______|  \\______| ");tap_key(KC_ENTER);
+                    
+
+
+      }
+      return false;
+//Pull Dotfile repo
+    case DOTFILE:
+      if (record->event.pressed) {
+              send_string("git clone https://github.com/justinsandhu/dotfiles");
+              tap_key(KC_ENTER);
+      }
+      return false;
+//---------------------------------
 //TMUX
     case TMUX_MOD:
       if (record->event.pressed) {
